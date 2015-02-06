@@ -1,5 +1,5 @@
 # 6to5-bits
-Is a browserified version of [6to5-core](https://www.npmjs.com/package/6to5-core) bundled as a [bit loader](https://github.com/MiguelCastillo/bit-loader) tranform.
+Is a browserified version of [6to5-core](https://www.npmjs.com/package/6to5-core) bundled as a [bit loader](https://github.com/MiguelCastillo/bit-loader) transform.
 
 ### Install
 ```
@@ -9,11 +9,11 @@ npm install 6to5-bits
 ### How to use it?
 You can load it via a module loader that can configure transforms in bit loader, such as [bit imports](https://github.com/MiguelCastillo/bit-imports)
 
-If you are using [bit import](https://github.com/MiguelCastillo/bit-imports), then you configure it like following:
+If you are using [bit import](https://github.com/MiguelCastillo/bit-imports), then you can configure it as follows:
 
 ```javascript
 var importer = Bitimports.config({
-  "tranforms": [{
+  "transforms": [{
     "name": "node_modules/6to5-bits/dist/index.js"
   }]
 });
