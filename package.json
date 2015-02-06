@@ -28,7 +28,7 @@
   "directories": {
     "test": "test"
   },
-  "description": "Browserified 6to5 transform for bit loader",
+  "description": "6to5 transform for bit loader",
   "repository": {
     "type": "git",
     "url": "https://github.com/MiguelCastillo/6to5-bits.git"
