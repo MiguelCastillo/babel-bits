@@ -1,6 +1,6 @@
 {
   "name": "6to5-bits",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {},
   "main": "dist/index.js",
   "scripts": {
