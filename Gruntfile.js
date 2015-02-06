@@ -66,7 +66,7 @@ module.exports = function(grunt) {
         },
         options: {
           browserifyOptions: {
-            'detectGlobals': false,
+            'detectGlobals': true,
             'standalone': 'index'
           }
         }
