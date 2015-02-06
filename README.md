@@ -1,5 +1,5 @@
 # 6to5-bits
-Is a browserified version of [6to5-core](https://www.npmjs.com/package/6to5-core) bundled as a [bit loader](https://github.com/MiguelCastillo/bit-loader) transform.
+> [6to5](https://www.npmjs.com/package/6to5-core) transform for [bit loader](https://github.com/MiguelCastillo/bit-loader).
 
 ### Install
 ```
