@@ -1,12 +1,12 @@
 /**
- * 6to5 bit loader transform, which includes ONLY 6to5 core.
+ * bable bit imports transform, which includes ONLY babel core.
  */
 (function() {
   'use strict';
 
-  var _6to5 = require('6to5-core');
+  var _babel = require('babel-core');
 
-  module.exports = function _6to5Transform(moduleMeta) {
-    moduleMeta.source = _6to5.transform(moduleMeta.source, this.options).code;
+  module.exports = function _babelTransform(moduleMeta) {
+    moduleMeta.source = _babel.transform(moduleMeta.source, this.options).code;
   };
 })();
