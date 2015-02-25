@@ -35,14 +35,14 @@ var importer = bitimports.config({
 var System = (function() {
   var importer = bitimports.config({
     "paths": {
-      "bable": "node_modules/babel-bits/dist/index.js"
+      "babel": "node_modules/babel-bits/dist/index.js"
     },
     "transforms": [{
         name: "ignore",
         handler: ignore,
-        ignore: ["bable"]
+        ignore: ["babel"]
       }, {
-        name: "bable"
+        name: "babel"
       }]
   });
 
