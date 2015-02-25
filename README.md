@@ -1,33 +1,31 @@
-# 6to5-bits
-> [6to5](https://www.npmjs.com/package/6to5-core) transform for [bit loader](https://github.com/MiguelCastillo/bit-loader).
+# babel-bits
+> [babel](https://www.npmjs.com/package/babel-core) transform for [bit imports](https://github.com/MiguelCastillo/bit-imports).
 
 ### Install
 ```
-npm install 6to5-bits
+npm install babel-bits
 ```
 
 ### What is this?
-It is simply a browserified UMD bundle of [6to5-core](https://www.npmjs.com/package/6to5-core) that is exposed as a single method. This bundle is intended to be used as a [bit loader](https://github.com/MiguelCastillo/bit-loader) transform, but you can certainly use it directly by feeding in a source string and 6to5 options to the exposed method.
+It is simply a browserified UMD bundle of [babel-core](https://www.npmjs.com/package/babel-core) that is exposed as a single method. This bundle is intended to be used as a [bit imports](https://github.com/MiguelCastillo/bit-imports) transform. But you can certainly use it directly by feeding in an object with a source property string along with babel options.
 
 ### How to use it?
-The primary use case is intended for [bit imports](https://github.com/MiguelCastillo/bit-imports), or any other module loader that can configure bit loader transforms.
+The primary use case is intended for [bit imports](https://github.com/MiguelCastillo/bit-imports), or any other module loader that can configure [bit loader](https://github.com/MiguelCastillo/bit-loader) transforms.
 
-So, if you are using [bit import](https://github.com/MiguelCastillo/bit-imports), then you can configure it as follows:
+To configure it with [bit import](https://github.com/MiguelCastillo/bit-imports), you can do the following:
 
 ```javascript
-var importer = Bitimports.config({
+var importer = bitimports.config({
   "transforms": [{
-    "name": "node_modules/6to5-bits/dist/index.js"
+    "name": "node_modules/babel-bits/dist/index.js"
   }]
 });
 ```
 
-And that's it. [bit imports](https://github.com/MiguelCastillo/bit-imports) will make sure to add 6to5 to the transformation workflow.
-
 ### Note on *generators
-[6to5](https://6to5.org/) needs an external tool called [regenerator](https://github.com/facebook/regenerator) in order to support `generator`s.  To bring `generator` support into your application, you can just load [regenerator](https://github.com/facebook/regenerator) via script tag (or equivalent) and all `generator` code produced by 6to5 will run just fine.  The idea here is that the code produced by 6to5 can find the method `regeneratorRuntime` whenever it is executed.
+[babel](https://babeljs.io/) needs an external tool called [regenerator](https://github.com/facebook/regenerator) in order to support `generator`s.  To bring `generator` support into your application, you can just load [regenerator](https://github.com/facebook/regenerator) via script tag (or equivalent) and all `generator` code produced by babel will run just fine.  The idea here is that the code produced by babel can find the method `regeneratorRuntime` whenever it is executed.
 
-#### Example with fully configured bit imports running 6to5 with generator support in the browser
+#### Example with fully configured bit imports running babel with generator support in the browser
 ```html
 <script src="node_modules/regenerator/runtime.js"></script>
 <script src="node_modules/bit-imports/dist/bit-imports.js"></script>
@@ -35,19 +33,22 @@ And that's it. [bit imports](https://github.com/MiguelCastillo/bit-imports) will
 <!-- You have to bootstrap an instance of bit imports. -->
 <script>
 var System = (function() {
-  var importer = Bitimports.config({
-    "transforms": [
-      {
+  var importer = bitimports.config({
+    "paths": {
+      "bable": "node_modules/babel-bits/dist/index.js"
+    },
+    "transforms": [{
+        name: "ignore",
         handler: ignore,
-        ignore: ["node_modules/6to5-bits/dist/index.js"]
+        ignore: ["bable"]
       }, {
-        name: "node_modules/6to5-bits/dist/index.js"
-      }
-    ]
+        name: "bable"
+      }]
   });
 
   /**
-   * Simple filter for excluding particular modules from being processed by the transformation pipeline.
+   * Simple filter for excluding particular modules from being processed by
+   * the transformation pipeline.
    */
   function ignore(moduleMeta) {
     var ignoreList = this.ignore;
