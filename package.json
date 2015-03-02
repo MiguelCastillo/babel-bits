@@ -35,7 +35,11 @@
   },
   "keywords": [
     "babel",
-    "6to5"
+    "6to5",
+    "bits",
+    "minify-bits",
+    "bit-runner",
+    "bit runner"
   ],
   "author": "Miguel Castillo <manchagnu@gmail.com>",
   "license": "MIT",
