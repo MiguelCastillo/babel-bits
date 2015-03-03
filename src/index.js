@@ -1,12 +1,22 @@
 /**
- * bable bit imports transform, which includes ONLY babel core.
+ * babel bits module to convert ESnext feature to ES5 equivalents
  */
-(function() {
-  'use strict';
+var babelCore = require('babel-core');
 
-  var _babel = require('babel-core');
+function babelize(data) {
+  _run(data, this.options);
+}
 
-  module.exports = function _babelTransform(moduleMeta) {
-    moduleMeta.source = _babel.transform(moduleMeta.source, this.options).code;
+babelize.config = function(options) {
+  return function babelize(data) {
+    _run(data, options);
   };
-})();
+};
+
+
+function _run(data, options) {
+  options = options || {};
+  data.source = babelCore.transform(data.source, options).code;
+}
+
+module.exports = babelize;

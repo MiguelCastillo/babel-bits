@@ -1,24 +1,68 @@
 # babel-bits
-> [babel](https://www.npmjs.com/package/babel-core) transform for [bit imports](https://github.com/MiguelCastillo/bit-imports).
+> [babel](https://www.npmjs.com/package/babel-core) plugin for [bit runner](https://github.com/MiguelCastillo/bit-runner) and transform for [bit imports](https://github.com/MiguelCastillo/bit-imports).
 
 ### Install
 ```
 npm install babel-bits
 ```
 
-### What is this?
-It is simply a browserified UMD bundle of [babel-core](https://www.npmjs.com/package/babel-core) that is exposed as a single method. This bundle is intended to be used as a [bit imports](https://github.com/MiguelCastillo/bit-imports) transform. But you can certainly use it directly by feeding in an object with a source property string along with babel options.
+### Configuration [bit runner](https://github.com/MiguelCastillo/bit-runner) `bitrunnerfile.js`
 
-### How to use it?
-The primary use case is intended for [bit imports](https://github.com/MiguelCastillo/bit-imports), or any other module loader that can configure [bit loader](https://github.com/MiguelCastillo/bit-loader) transforms.
+#### Run babel
+``` javascript
+var bitRunner = require('bit-runner');
+var babel     = require('babel-bits');
 
-To configure it with [bit import](https://github.com/MiguelCastillo/bit-imports), you can do the following:
+/**
+ * JavaScript pipeline
+ */
+bitRunner.register('default', function buildPipeline(task) {
+  task
+    .load('index.js')
+    .then(babel)
+});
+```
 
+#### Configure and run babel
+
+The configuration settings are passed right to [babel](https://babeljs.io), so please refer to their [docs](https://babeljs.io/docs/usage/options/) for details on the available options.
+
+``` javascript
+var bitRunner = require('bit-runner');
+var babel     = require('babel-bits');
+
+/**
+ * JavaScript pipeline
+ */
+bitRunner.register('default', function buildPipeline(task) {
+  task
+    .load('index.js')
+    .then(babel.config({ast: false}))
+});
+```
+
+
+### Configuration [bit-imports](https://github.com/MiguelCastillo/bit-imports)
+
+#### Via configuration
 ```javascript
-var importer = bitimports.config({
+bitimports.config({
   "transforms": [{
-    "name": "node_modules/babel-bits/dist/index.js"
+    "name": "node_modules/babel-bits/dist/index.js",
+    "options": {
+      "ast": false
+    }
   }]
+});
+```
+
+#### Via method
+```javascript
+bitimports.transform.use({
+  name: "node_modules/babel-bits/dist/index.js",
+  options: {
+    ast: false
+  }
 });
 ```
 
@@ -56,7 +100,7 @@ var System = (function() {
   }
 
   return importer;
-})();
+}());
 
 var require = System.require;
 </script>
