@@ -82,10 +82,18 @@ module.exports = function(grunt) {
           'dist/index.min.js': ['dist/index.js']
         }
       }
+    },
+    release: {
+      options: {
+        tagName: 'v<%= version %>',
+        tagMessage: 'Version <%= version %>',
+        commitMessage: 'Release v<%= version %>'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-uglify');
