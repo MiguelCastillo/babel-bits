@@ -85984,10 +85984,30 @@ function hasOwnProperty(obj, prop) {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./support/isBuffer":510,"_process":495,"inherits":492}],512:[function(require,module,exports){
+module.exports = extend
+
+function extend() {
+    var target = {}
+
+    for (var i = 0; i < arguments.length; i++) {
+        var source = arguments[i]
+
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = source[key]
+            }
+        }
+    }
+
+    return target
+}
+
+},{}],513:[function(require,module,exports){
 /**
  * babel bits module to convert ESnext feature to ES5 equivalents
  */
 var babelCore = require('babel-core');
+var extend = require('xtend');
 
 function babelize(data) {
   _run(data, this.options);
@@ -85999,13 +86019,13 @@ babelize.config = function(options) {
   };
 };
 
-
 function _run(data, options) {
-  options = options || {};
-  data.source = babelCore.transform(data.source, options).code;
+  var settings = extend({}, options);
+  settings.filename = (options.filename && options.filename(data)) || data.path;
+  data.source = babelCore.transform(data.source, settings).code;
 }
 
 module.exports = babelize;
 
-},{"babel-core":19}]},{},[512])(512)
+},{"babel-core":19,"xtend":512}]},{},[513])(513)
 });
