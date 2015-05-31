@@ -15,6 +15,7 @@ babelize.config = function(options) {
 };
 
 function _run(data, options) {
+  options = options || {};
   var settings = extend({}, options);
   settings.filename = (options.filename && options.filename(data)) || data.path;
   data.source = babelCore.transform(data.source, settings).code;
