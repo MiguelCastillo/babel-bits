@@ -1,6 +1,17 @@
 language: node_js
 node_js:
-  - "0.10"
-
+- '0.10'
 before_install:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
+deploy:
+  provider: releases
+  api_key:
+    secure: Fj+H73B/MnqFhP7FGR/6bzlqkO/ip3BKQ8jhxjtoqIx1IFQTYrcHw3FLKfFEnJzydZoqPggd7c/VxHiwPqeqlYslnEDyzbCposKT6kTZ7oYf5cMjxanSS5uk/ONLoL6D5gNqvv+yWXBls81UIsUr8DUtm789anFxLVauW952AAo=
+  file:
+    - "dist/index.js"
+    - "dist/index.min.js"
+    - "dist/index.min.js.map"'
+  skip_cleanup: true
+  on:
+    repo: MiguelCastillo/babel-bits
+    tags: true
