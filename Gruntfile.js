@@ -61,21 +61,21 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'build': {
+      build: {
         files: {
           'dist/index.js': ['src/index.js']
         },
         options: {
           banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>. (c) <%= grunt.template.today("yyyy") %> Miguel Castillo. Licensed under MIT */',
           browserifyOptions: {
-            'detectGlobals': true,
-            'standalone': 'index'
+            detectGlobals: true,
+            standalone: 'babelbits'
           }
         }
       }
     },
     uglify: {
-      'build': {
+      build: {
         options: {
           preserveComments: 'some',
           sourceMap: true
