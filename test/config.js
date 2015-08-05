@@ -4,7 +4,7 @@ var System = (function() {
     baseUrl: '../',
     paths: {
       chai: 'node_modules/chai/chai',
-      babel: 'dist/index'
+      babel: 'node_modules/babel-bits/dist/index'
     }
   });
 
