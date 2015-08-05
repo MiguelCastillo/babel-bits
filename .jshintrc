@@ -11,5 +11,14 @@
   "noarg": true,
   "quotmark": "single",
   "undef": true,
-  "unused": true
+  "unused": true,
+  "globals": {
+    "window": true,
+    "System": true,
+    "mocha": true,
+    "bitimports": true,
+    "describe": true,
+    "it": true,
+    "expect": true
+  }
 }
