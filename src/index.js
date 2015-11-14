@@ -5,17 +5,17 @@ function result(value, data) {
   return typeof value === 'function' ? value(data) : value;
 }
 
-function babelize(data, options) {
-  return _run(data, options);
+function babelize(data, config) {
+  return run(data, config.options);
 }
 
-babelize.config = function(options) {
+babelize.config = function(config) {
   return function babelize(data) {
-    return _run(data, options);
+    return run(data, config.options);
   };
 };
 
-function _run(data, options) {
+function run(data, options) {
   var settings = extend({}, options);
   settings.filename = result(settings.filename, data) || data.path;
 
