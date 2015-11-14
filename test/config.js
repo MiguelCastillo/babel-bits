@@ -8,8 +8,6 @@ var System = (function() {
     }
   });
 
-  importer.ignore(['chai']);
-
   importer.plugin('js', {
     transform: {
       handler: 'babel',
