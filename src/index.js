@@ -1,5 +1,5 @@
 var babelCore = require('babel-core');
-var extend = require('xtend');
+var extend = require('belty/src/extend');
 
 function result(value, data) {
   return typeof value === 'function' ? value(data) : value;
