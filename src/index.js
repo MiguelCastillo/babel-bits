@@ -1,9 +1,10 @@
-var babelCore = require('babel-core');
+var babel = require('babel-standalone');
+var result = require('belty/src/result');
 var extend = require('belty/src/extend');
 
-function result(value, data) {
-  return typeof value === 'function' ? value(data) : value;
-}
+var defaults = {
+  presets: ['es2015', 'react']
+};
 
 function babelize(data, config) {
   return run(data, config.options);
@@ -16,11 +17,11 @@ babelize.config = function(config) {
 };
 
 function run(data, options) {
-  var settings = extend({}, options);
-  settings.filename = result(settings.filename, data) || data.path;
+  var settings = extend({}, defaults, options);
+  settings.filename = result(settings, 'filename', data) || data.path;
 
   return {
-    source: babelCore.transform(data.source, settings).code
+    source: babel.transform(data.source, settings).code
   };
 }
 
