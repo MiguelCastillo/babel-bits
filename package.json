@@ -33,7 +33,7 @@
   "directories": {
     "test": "test"
   },
-  "description": "babel (6to5) transform for bit imports",
+  "description": "babel (6to5) transform for bit-imports and bit-bundler",
   "repository": {
     "type": "git",
     "url": "https://github.com/MiguelCastillo/babel-bits.git"
