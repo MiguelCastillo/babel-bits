@@ -1,82 +1,28 @@
 # babel-bits
-> [babel](https://www.npmjs.com/package/babel-core) plugin for [bit runner](https://github.com/MiguelCastillo/bit-runner) and transform for [bit imports](https://github.com/MiguelCastillo/bit-imports).
+> [babel](https://www.npmjs.com/package/babel-core) transform for [bit imports](https://github.com/MiguelCastillo/bit-imports) & [bit bundler](https://github.com/MiguelCastillo/bit-bundler).
 
 ### Install
 ```
-npm install babel-bits
+npm install --save babel-bits
 ```
 
-### Configuration for [bit-imports](https://github.com/MiguelCastillo/bit-imports)
+### Options
 
-Options are forwarded right to [babel](https://babeljs.io/). Take a look at all available [options](https://babeljs.io/docs/usage/options/) to fine tune babel. *bit imports will automatically handle `filename`.*
+are forwarded right to [babel](https://babeljs.io/). Take a look at all available [options](https://babeljs.io/docs/usage/options/) to fine tune babel. *bit imports will automatically handle `filename`.*
 
-You can take a look at [bit sandbox](https://github.com/MiguelCastillo/bit-sandbox) for a sample where you can play with babel in the browser.
+> babel-bits configures `es2015` and `react` presets. Feel free to provide your own.
 
+### bit-imports example
 
-#### plugin method
-```javascript
+``` javascript
 bitimports.plugin("js", {
   transform: {
-    handler: "babel",
+    handler: "babel-bits",
     options: {
-      sourceMaps: "inline"
+      sourceMaps: "inline",
+      presets: ["es2015"]
     }
   }
-});
-```
-
-Or alternatively:
-
-#### plugin config
-```javascript
-bitimports.config({
-  plugins: {
-    js: {
-      transform: {
-        handler: "./node_modules/babel-bits/dist/index.js",
-        options: {
-          ast: false,
-          sourceMaps: "inline"
-        }
-      }
-    }
-  }
-});
-```
-
-
-### Configuration [bit runner](https://github.com/MiguelCastillo/bit-runner) `bitrunnerfile.js`
-
-#### Run babel
-``` javascript
-var bitRunner = require('bit-runner');
-var babel     = require('babel-bits');
-
-/**
- * JavaScript pipeline
- */
-bitRunner.register('default', function buildPipeline(task) {
-  task
-    .load('index.js')
-    .then(babel)
-});
-```
-
-#### Configure and run babel
-
-The configuration settings are passed right to [babel](https://babeljs.io), so please refer to their [docs](https://babeljs.io/docs/usage/options/) for details on the available options.
-
-``` javascript
-var bitRunner = require('bit-runner');
-var babel     = require('babel-bits');
-
-/**
- * JavaScript pipeline
- */
-bitRunner.register('default', function buildPipeline(task) {
-  task
-    .load('index.js')
-    .then(babel.config({ast: false}))
 });
 ```
 
