@@ -8,7 +8,7 @@ npm install --save babel-bits
 
 ### Options
 
-are forwarded right to [babel](https://babeljs.io/). Take a look at all available [options](https://babeljs.io/docs/usage/options/) to fine tune babel. *bit imports will automatically handle `filename`.*
+are forwarded right to [babel](https://babeljs.io/). Take a look at all available [options](https://babeljs.io/docs/usage/options/) to fine tune babel.
 
 > babel-bits configures `es2015` and `react` presets. Feel free to provide your own.
 
