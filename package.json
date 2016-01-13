@@ -11,7 +11,7 @@
     "belty": "^0.3.0"
   },
   "devDependencies": {
-    "babel-bits": "^0.4.1",
+    "babel-bits": "^1.0.0",
     "bit-imports": "^1.0.2",
     "browserify": "~13.0.0",
     "chai": "~3.4.1",
