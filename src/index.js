@@ -18,7 +18,13 @@ babelize.config = function(config) {
 
 function run(data, options) {
   var settings = extend({}, defaults, options);
-  settings.filename = result(settings, 'filename', data) || data.path;
+  settings.filename = result(settings, 'filename', [data]) || data.path;
+
+  for (var settingName in settings) {
+    if (settingName !== 'filename') {
+      settings[settingName] = result(settings, settingName, [data]);
+    }
+  }
 
   return {
     source: babel.transform(data.source, settings).code
